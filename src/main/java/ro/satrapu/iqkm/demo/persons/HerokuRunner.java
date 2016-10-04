@@ -6,6 +6,7 @@ import org.wildfly.swarm.datasources.DatasourceArchive;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.*;
 
 /**
  * Bootstraps WildFly Swarm on <a href="https://www.heroku.com/home">Heroku</a> cloud application platform.
@@ -22,15 +23,10 @@ public class HerokuRunner {
      * @param args The command-line arguments.
      */
     public static void main(String[] args) throws Exception {
-        Swarm swarm = new Swarm();
-        swarm.start();
-
-        //ensure the Heroku datasource is deployed before the JEE application, so that the latter's persistence unit
-        // will be able to find a suitable datasource
-        swarm.deploy(buildDatasourceArchive(System.getenv(ENVIRONMENT_VARIABLE_DATABASE_URL)));
-
-        //deploy the JEE 7 application, containing configured Swarm fractions like CDI, EJB, etc.
-        swarm.deploy();
+        // Simplify the heroku local test to just dumping the environment
+        System.out.println(System.getenv("KEY1"));
+        System.out.println(System.getenv("KEY2"));
+        System.out.println(System.getenv("KEY3"));
     }
 
     /**
